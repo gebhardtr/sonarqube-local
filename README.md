@@ -24,11 +24,14 @@ open http://localhost:9000
     1. Name: global
     1. Type: Global Analysis Token
     1. Expires in: 30 days
-1. Click the copy icon to copy the token
 1. Save token as a podman secret
-```bash
-pbpaste | podman secret create sonar_token -
-```
+    1. From a terminal, type the following but don't press RETURN:
+    ```bash
+    pbpaste | podman secret create sonar_token --replace -
+    ```
+1. Copy the token from the SonarQube console in your browser by clicking the copy icon
+1. Press RETURN in the terminal
+1. Paste the token you copied into the terminal
 
 
 ### Scan repository
