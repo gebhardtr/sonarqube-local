@@ -41,7 +41,7 @@ podman run --rm -v $(pwd):/usr/src \
     --network sonarqube-local_default \
     --secret sonar_token,type=env,target=SONAR_TOKEN \
     sonarsource/sonar-scanner-cli \
-    -Dsonar.projectKey=PLATFORM-respository -Dsonar.projectName='PLATFORM-repository' \
+    -Dsonar.projectKey=PLATFORM-repository -Dsonar.projectName='PLATFORM-repository' \
     -Dsonar.host.url=http://sonarqube:9000
 ```
 
