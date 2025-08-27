@@ -25,7 +25,7 @@ open http://localhost:9000
     1. Type: Global Analysis Token
     1. Expires in: 30 days
 1. Save token as a podman secret
-    1. From a terminal, type the following but don't press RETURN:
+    1. From a terminal, type the following but DO NOT press ENTER:
     ```bash
     pbpaste | podman secret create sonar_token --replace -
     ```
