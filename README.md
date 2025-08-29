@@ -7,6 +7,12 @@
 brew install podman podman-compose
 ```
 
+### Set required secrets
+```bash
+podman secret create sonar_jdbc_password /path/to/file/containing/secret
+podman secret create postgres_password /path/to/file/containing/secret
+```
+
 ### Run server
 ```bash
 podman compose up --detach

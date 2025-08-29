@@ -4,10 +4,13 @@ services:
     image: sonarqube:community
     depends_on:
       - db
+    secrets:
+      - source: sonar_jdbc_password
+        type: env
+        target: SONAR_JDBC_PASSWORD
     environment:
       SONAR_JDBC_URL: jdbc:postgresql://db:5432/sonar
       SONAR_JDBC_USERNAME: sonar
-      SONAR_JDBC_PASSWORD: sonar
     volumes:
       - sonarqube_data:/opt/sonarqube/data
       - sonarqube_extensions:/opt/sonarqube/extensions
@@ -16,16 +19,23 @@ services:
       - "9000:9000"
   db:
     image: postgres:12
+    secrets:
+      - source: postgres_password
+        type: env
+        target: POSTGRES_PASSWORD
     environment:
       POSTGRES_USER: sonar
-      POSTGRES_PASSWORD: sonar
     volumes:
       - postgresql:/var/lib/postgresql
       - postgresql_data:/var/lib/postgresql/data
-
 volumes:
   sonarqube_data:
   sonarqube_extensions:
   sonarqube_logs:
   postgresql:
   postgresql_data:
+secrets:
+  sonar_jdbc_password:
+    external: true
+  postgres_password:
+    external: true
