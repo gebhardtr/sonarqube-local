@@ -7,6 +7,12 @@
 brew install podman podman-compose
 ```
 
+### Initialize podman
+```bash
+podman machine init
+podman machine start
+```
+
 ### Set required secrets
 ```bash
 podman secret create sonar_jdbc_password /path/to/file/containing/secret
