@@ -14,9 +14,15 @@ podman machine start
 ```
 
 ### Set required secrets
+
+Create two new files:
+* `sonar-secret` containing your desired SonarQube secret
+* `postgres-secret` containing your desired PostgreSQL secret.
+
+Create two new Podman secrets using the values from the files you created:
 ```bash
-podman secret create sonar_jdbc_password /path/to/file/containing/secret
-podman secret create postgres_password /path/to/file/containing/secret
+podman secret create sonar_jdbc_password /path/to/sonar-secret
+podman secret create postgres_password /path/to/postgres-secret
 ```
 
 ### Run server
@@ -53,7 +59,7 @@ podman run --rm -v $(pwd):/usr/src \
     --network sonarqube-local_default \
     --secret sonar_token,type=env,target=SONAR_TOKEN \
     sonarsource/sonar-scanner-cli \
-    -Dsonar.projectKey=PLATFORM-repository -Dsonar.projectName='PLATFORM-repository' \
+    -Dsonar.projectKey=PLATFORM-repository -Dsonar.projectName='PROJECT-NAME' \
     -Dsonar.host.url=http://sonarqube:9000
 ```
 
