@@ -1,7 +1,7 @@
 version: "3"
 services:
   sonarqube:
-    image: sonarqube:community
+    image: ${SONARQUBE_IMAGE:-sonarqube:26.8.0.126808-community}
     depends_on:
       - db
     secrets:
@@ -18,7 +18,7 @@ services:
     ports:
       - "9000:9000"
   db:
-    image: postgres:12
+    image: postgres:17
     secrets:
       - source: postgres_password
         type: env
@@ -27,13 +27,13 @@ services:
       POSTGRES_USER: sonar
     volumes:
       - postgresql:/var/lib/postgresql
-      - postgresql_data:/var/lib/postgresql/data
+      - postgresql_data_v17:/var/lib/postgresql/data
 volumes:
   sonarqube_data:
   sonarqube_extensions:
   sonarqube_logs:
   postgresql:
-  postgresql_data:
+  postgresql_data_v17:
 secrets:
   sonar_jdbc_password:
     external: true
